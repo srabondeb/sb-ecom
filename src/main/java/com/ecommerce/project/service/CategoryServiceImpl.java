@@ -33,16 +33,16 @@ public class CategoryServiceImpl implements CategoryService{
         categoryRepository.save(category);
     }
 
-
-
+    /**
+     *
+     * @param categoryId
+     * @return string message
+     * It simply search the category in the database if not found then throw exception.
+     */
 
     @Override
     public String deleteCategory(Long categoryId){
-        List<Category> categories = categoryRepository.findAll();
-
-        Category category = categories.stream()
-                .filter(c ->c.getCategoryId().equals(categoryId))
-                .findFirst()
+        Category category = categoryRepository.findById(categoryId)
                 .orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND));
 
         categoryRepository.delete(category);
@@ -50,12 +50,18 @@ public class CategoryServiceImpl implements CategoryService{
     }
 
 
-
+    /**
+     *
+     * @param category
+     * @param categoryId
+     * @return savedCategory
+     * Very simple, we searched the category by categoryId from the database, if its not found then we just through
+     * exception and appropriate Http message.
+     */
 
     @Override
     public Category updateCategory(Category category, Long categoryId) {
-        Optional<Category> savedCategoryOptional = categoryRepository.findById(categoryId);
-        Category savedCategory = savedCategoryOptional
+         Category savedCategory = categoryRepository.findById(categoryId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Resource not Found"));
 
         category.setCategoryId(categoryId);
