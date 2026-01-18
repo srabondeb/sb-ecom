@@ -13,9 +13,6 @@ import java.util.Optional;
 
 @Service
 public class CategoryServiceImpl implements CategoryService{
-    //private Long nextId=1L;
-    //private List<Category> categories = new ArrayList<>();
-
     @Autowired
     private CategoryRepository categoryRepository;
 
@@ -25,8 +22,6 @@ public class CategoryServiceImpl implements CategoryService{
     }
 
 
-
-
     @Override
     public void createCategory(Category category){
         //category.setCategoryId(nextId++);
@@ -34,7 +29,6 @@ public class CategoryServiceImpl implements CategoryService{
     }
 
     /**
-     *
      * @param categoryId
      * @return string message
      * It simply search the category in the database if not found then throw exception.
@@ -51,7 +45,6 @@ public class CategoryServiceImpl implements CategoryService{
 
 
     /**
-     *
      * @param category
      * @param categoryId
      * @return savedCategory
